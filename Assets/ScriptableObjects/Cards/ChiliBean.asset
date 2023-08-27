@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdcb98538b75934c9c872ebfa333fc6, type: 3}
+  m_Name: ChiliBean
+  m_EditorClassIdentifier: 
+  cardType: 5
+  cardImage: {fileID: 3251693336574292314, guid: 08b2ff480b7584742945114711be2cc0, type: 3}
+  cardName: Chili Bean
+  amount: 18
+  stackSizeToCoin:
+  - stackCount: 3
+    coinAmount: 1
+  - stackCount: 6
+    coinAmount: 2
+  - stackCount: 8
+    coinAmount: 3
+  - stackCount: 9
+    coinAmount: 4

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdcb98538b75934c9c872ebfa333fc6, type: 3}
+  m_Name: GreenBean
+  m_EditorClassIdentifier: 
+  cardType: 10
+  cardImage: {fileID: -7070926682435044076, guid: 4baf76da502f4754dab1696097accf7d, type: 3}
+  cardName: Green Bean
+  amount: 14
+  stackSizeToCoin:
+  - stackCount: 3
+    coinAmount: 1
+  - stackCount: 5
+    coinAmount: 2
+  - stackCount: 6
+    coinAmount: 3
+  - stackCount: 7
+    coinAmount: 4

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdcb98538b75934c9c872ebfa333fc6, type: 3}
+  m_Name: SoyBean
+  m_EditorClassIdentifier: 
+  cardType: 4
+  cardImage: {fileID: 7432806759724446305, guid: 3972a74f61a38174ab73d55f23a1d274, type: 3}
+  cardName: Soy Bean
+  amount: 12
+  stackSizeToCoin:
+  - stackCount: 2
+    coinAmount: 1
+  - stackCount: 4
+    coinAmount: 2
+  - stackCount: 6
+    coinAmount: 3
+  - stackCount: 7
+    coinAmount: 4

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdcb98538b75934c9c872ebfa333fc6, type: 3}
+  m_Name: StinkBean
+  m_EditorClassIdentifier: 
+  cardType: 9
+  cardImage: {fileID: 1310396749960795755, guid: fe02a446ef59d5a4fbac6ab1f00db455, type: 3}
+  cardName: Stink Bean
+  amount: 16
+  stackSizeToCoin:
+  - stackCount: 3
+    coinAmount: 1
+  - stackCount: 5
+    coinAmount: 2
+  - stackCount: 7
+    coinAmount: 3
+  - stackCount: 8
+    coinAmount: 4

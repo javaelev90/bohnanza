@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdcb98538b75934c9c872ebfa333fc6, type: 3}
+  m_Name: CoffeeBean
+  m_EditorClassIdentifier: 
+  cardType: 8
+  cardImage: {fileID: 8592079362736953306, guid: 4d13de74dd32fad479d8d170dd4aeccf, type: 3}
+  cardName: Coffee Bean
+  amount: 24
+  stackSizeToCoin:
+  - stackCount: 4
+    coinAmount: 1
+  - stackCount: 7
+    coinAmount: 2
+  - stackCount: 10
+    coinAmount: 3
+  - stackCount: 12
+    coinAmount: 4
