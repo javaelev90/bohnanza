@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : SingletonNetworkBehaviour<GameManager>
 {
-
     [SerializeField]
     private CardManager cardManager;
+    [SerializeField]
+    private SeatHandler seatHandler;
 
-    private IReadOnlyList<ulong> playerIds = new List<ulong>();
-
-    public void Init()
-    {
-        cardManager.Init();
-    }
+    public List<Player> PlayerList { get; private set; }
 
     public void StartGame()
     {
         if (!IsHost) return;
-        
-        playerIds = NetworkManager.Singleton.ConnectedClientsIds;
+
+        PlayerList = new List<Player>();
+        PlayerList.AddRange(GameObject.FindObjectsByType<Player>(FindObjectsSortMode.None));
+
+        seatHandler.AssignPlayerSeatsServerRpc();
+
+        cardManager.Init();
         cardManager.DealCardsServerRpc(5);
     }
 
@@ -29,4 +30,5 @@ public class GameManager : NetworkBehaviour
     {
         
     }
+
 }

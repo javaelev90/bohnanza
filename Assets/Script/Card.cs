@@ -8,6 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Card", order = 1)]
 public class Card : ScriptableObject
 {
+    [Serializable]
     public enum CardTypes
     {
         Default = 0,
