@@ -15,4 +15,6 @@ public class CardInterface : MonoBehaviour
         Card = card;
         cardImage.sprite = card.CardImage;
     }
+
+
 }
