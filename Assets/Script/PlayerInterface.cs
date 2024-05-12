@@ -11,15 +11,26 @@ public class PlayerInterface : MonoBehaviour
     private CardInterface cardPrefab;
     [SerializeField]
     private Transform handTransform;
+    [SerializeField]
+    private FieldInterface fieldInterface;
+
+    private List<CardInterface> hand = new List<CardInterface>();
 
     private void Start()
     {
         EventSystem.Instance.RegisterListener<ReceiveCardEvent>(OnReceiveCardEvent);
+        EventSystem.Instance.RegisterListener<RemoveCardEvent>(OnRemoveCardEvent);
     }
 
     public void OnReceiveCardEvent(ReceiveCardEvent receiveCardEvent)
     {
         CardInterface newCard = Instantiate(cardPrefab, handTransform);
+        hand.Add(newCard);
         newCard.Init(CardManager.Instance.CardTypes[receiveCardEvent.CardType]);
+    }
+
+    public void OnRemoveCardEvent(RemoveCardEvent removeCardEvent)
+    {
+        hand.RemoveAt(0);
     }
 }

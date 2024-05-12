@@ -34,7 +34,7 @@ public class HelloWorldManager : MonoBehaviour
             StatusLabels();
             if (NetworkManager.Singleton.IsHost && GUILayout.Button("Start")) gameManager.StartGame();
 
-            SubmitNewPosition();
+            //SubmitNewPosition();
         }
         GUILayout.EndArea();
     }

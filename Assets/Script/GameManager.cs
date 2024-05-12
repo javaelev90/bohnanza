@@ -31,4 +31,11 @@ public class GameManager : SingletonNetworkBehaviour<GameManager>
         
     }
 
+    // player sends action
+    // plant, harvest
+    // trade
+    //    show 2 cards
+    //    trade them or plant
+    //    allow harvest
+    // move to next player
 }

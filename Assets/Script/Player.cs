@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
-    [SerializeField]
-    private PlayerInterface playerInterface;
-
     NetworkTransform playerTransform;
 
     public List<Card> Hand { get; private set; }
@@ -17,9 +14,6 @@ public class Player : NetworkBehaviour
 
     void Start()
     {
-        if(!IsOwner)
-            playerInterface.gameObject.SetActive(false);
-
         Hand = new List<Card>();
         Coins = new List<Card>();
         Field = new Field();
@@ -42,5 +36,16 @@ public class Player : NetworkBehaviour
         transform.SetPositionAndRotation(
             SeatHandler.Instance.GetSeat(seatId).position,
             SeatHandler.Instance.GetSeat(seatId).rotation);
+    }
+
+    [ClientRpc]
+    public void PlantCardClientRpc(Card.CardTypes cardType)
+    {
+        if (IsOwner)
+        {
+            Hand.RemoveAt(0);
+            EventSystem.Instance.FireEvent(new RemoveCardEvent { CardType = cardType });
+        }
+            
     }
 }

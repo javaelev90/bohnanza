@@ -28,4 +28,9 @@ public class Field
     {
         
     }
+
+    void OnLaneHarvestEvent(LaneHarvestEvent laneHarvestEvent)
+    {
+        
+    }
 }

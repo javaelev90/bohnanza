@@ -12,7 +12,10 @@ public class StartTurnState : State
     }
 
 
-    //public virtual void Enter() { }
+    public override void Enter() 
+    { 
+
+    }
     //public virtual void Update() { }
     //public virtual void EvaluateTransition() { }
     //public virtual void Exit() { }

@@ -23,7 +23,7 @@ public class SingletonNetworkBehaviour<T> : NetworkBehaviour where T : Component
         }
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
         base.OnDestroy();
         Instance = null;
