@@ -810,6 +810,8 @@ MonoBehaviour:
   cardSpacing: 0
   cardStackType: 0
   cardOffset: {x: 1, y: 0, z: 0}
+  cardMovementType: 1
+  cardMovementTime: 0.5
 --- !u!1 &1582870291
 GameObject:
   m_ObjectHideFlags: 0

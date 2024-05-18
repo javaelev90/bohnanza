@@ -16,6 +16,12 @@ public class CardManagerV2 : MonoBehaviour
     [SerializeField]
     Vector3 cardOffset = Vector3.zero;
 
+    [SerializeField]
+    CardMovementType cardMovementType = CardMovementType.Snap;
+
+    [SerializeField]
+    float cardMovementTime = 0.5f;
+
     List<CardV2> cards = new();
     Vector3 stackStartPosition = Vector3.zero;
     
@@ -32,20 +38,44 @@ public class CardManagerV2 : MonoBehaviour
         int maxOrder = cards.Count;
         cards.ForEach(card =>
         {
-            if (!card.IsCardBeingDragged && !card.IsCardInteracting)
-            {
-                // TODO dont move card if being pressed or moved by player
-                card.SetPosition(startPosition);
-                card.SetRenderingOrderLevel(maxOrder);
-            }
-            else
-            {
-                card.SetRenderingOrderLevel(cards.Count + 1);
-            }
+            //if (!card.IsCardBeingDragged && !card.IsCardInteracting)
+            //{
+            //    // TODO dont move card if being pressed or moved by player
+            //    card.SetPosition(startPosition);
+            //    card.SetRenderingOrderLevel(maxOrder);
+            //}
+            //else
+            //{
+            //    card.SetRenderingOrderLevel(cards.Count + 1);
+            //}
+            UpdateCardPosition(card, startPosition, maxOrder);
             maxOrder--;
             startPosition += cardOffset;
 
         });
+    }
+
+    void UpdateCardPosition(CardV2 card, Vector2 startPosition, int layerOrder)
+    {
+        if (card.IsCardBeingDragged || card.IsCardInteracting)
+        {
+            card.SetRenderingOrderLevel(cards.Count + 1);
+        }
+        else if (!card.IsCardMoved && !card.IsAtLocation(startPosition))
+        {
+            if (cardMovementType == CardMovementType.Snap)
+            {
+                card.SetPosition(startPosition);
+            }
+            else if(cardMovementType == CardMovementType.Linear)
+            {
+                card.Transfer(startPosition, cardMovementTime);
+            }
+        }
+        else
+        {
+            card.SetRenderingOrderLevel(layerOrder);
+        }
     }
 
     public void AddCard(CardV2 card)
@@ -67,4 +97,10 @@ public enum CardStackType
     NoStack,
     RightStack,
     LeftStack
+}
+
+public enum CardMovementType
+{
+    Snap,
+    Linear
 }
