@@ -19,7 +19,8 @@ public class CardV2 : MonoBehaviour
     public bool IsCardBeingDragged { get; private set; }
     public bool IsCardMoved { get; set; }
 
-    private Coroutine transferCoRoutine;
+    Coroutine transferCoRoutine;
+    Vector3 previousPointerPosition = Vector3.zero;
 
     void Awake()
     {
@@ -43,10 +44,6 @@ public class CardV2 : MonoBehaviour
     {
         transform.SetLocalPositionAndRotation(newPosition, transform.rotation);
     }
-    private void SetPosition(Vector2 newPosition)
-    {
-        transform.SetLocalPositionAndRotation(newPosition, transform.rotation);
-    }
 
     public void Transfer(Vector2 targetPosition, float transferTime)
     {
@@ -55,10 +52,16 @@ public class CardV2 : MonoBehaviour
         transferCoRoutine = StartCoroutine(TransferCard(targetPosition, transferTime));
     }
 
+    private void StopTransfer()
+    {
+        if (transferCoRoutine != null)
+            StopCoroutine(transferCoRoutine);
+    }
+
     private IEnumerator TransferCard(Vector2 targetPosition, float transferTime)
     {
         float accumulatedTime = 0f;
-        while(Vector2.Distance(targetPosition, transform.position) >= 0.1)
+        while(accumulatedTime < transferTime)
         {
             Vector2 newPosition = Vector2.Lerp(transform.position, targetPosition, accumulatedTime / transferTime);
             SetPosition(newPosition);
@@ -67,12 +70,6 @@ public class CardV2 : MonoBehaviour
         }
         SetPosition(targetPosition);
         IsCardMoved = false;
-    }
-
-    private void StopTransfer()
-    {
-        if (transferCoRoutine != null)
-            StopCoroutine(transferCoRoutine);
     }
     
     public bool IsAtLocation(Vector2 location)
@@ -88,14 +85,19 @@ public class CardV2 : MonoBehaviour
     public void OnPressed(PointerEventData eventData)
     {
         StopTransfer();
+        previousPointerPosition = Camera.main.ScreenToWorldPoint(eventData.position);
         IsCardBeingDragged = true;
         IsCardMoved = true;
     }
 
     public void OnDragged(PointerEventData eventData)
     {
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(eventData.position);
-        SetPosition(new Vector2(worldPosition.x, worldPosition.y));   
+        Vector3 pointerPosition = Camera.main.ScreenToWorldPoint(eventData.position);
+        Vector3 centerPosition = transform.position;
+        Vector3 positionDifference = centerPosition - pointerPosition;
+        Vector3 newPosition = pointerPosition + positionDifference + (pointerPosition - previousPointerPosition);
+        previousPointerPosition = pointerPosition;
+        SetPosition(new Vector2(newPosition.x, newPosition.y));   
     }
 
     public void OnReleased(PointerEventData eventData)

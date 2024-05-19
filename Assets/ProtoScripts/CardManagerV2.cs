@@ -38,39 +38,34 @@ public class CardManagerV2 : MonoBehaviour
         int maxOrder = cards.Count;
         cards.ForEach(card =>
         {
-            //if (!card.IsCardBeingDragged && !card.IsCardInteracting)
-            //{
-            //    // TODO dont move card if being pressed or moved by player
-            //    card.SetPosition(startPosition);
-            //    card.SetRenderingOrderLevel(maxOrder);
-            //}
-            //else
-            //{
-            //    card.SetRenderingOrderLevel(cards.Count + 1);
-            //}
-            UpdateCardPosition(card, startPosition, maxOrder);
+            UpdateCardPosition(card, startPosition);
+            SetDrawingOrder(card, maxOrder);
             maxOrder--;
             startPosition += cardOffset;
-
         });
     }
 
-    void UpdateCardPosition(CardV2 card, Vector2 startPosition, int layerOrder)
+    void UpdateCardPosition(CardV2 card, Vector2 startPosition)
+    {
+        if (card.IsCardMoved) return;
+        if (card.IsAtLocation(startPosition)) return;
+        if (card.IsCardInteracting) return;
+
+        if (cardMovementType == CardMovementType.Snap)
+        {
+            card.SetPosition(startPosition);
+        }
+        else if(cardMovementType == CardMovementType.Linear)
+        {
+            card.Transfer(startPosition, cardMovementTime);
+        } 
+    }
+
+    void SetDrawingOrder(CardV2 card, int layerOrder)
     {
         if (card.IsCardBeingDragged || card.IsCardInteracting)
         {
             card.SetRenderingOrderLevel(cards.Count + 1);
-        }
-        else if (!card.IsCardMoved && !card.IsAtLocation(startPosition))
-        {
-            if (cardMovementType == CardMovementType.Snap)
-            {
-                card.SetPosition(startPosition);
-            }
-            else if(cardMovementType == CardMovementType.Linear)
-            {
-                card.Transfer(startPosition, cardMovementTime);
-            }
         }
         else
         {
