@@ -61,9 +61,10 @@ public class CardV2 : MonoBehaviour
     private IEnumerator TransferCard(Vector2 targetPosition, float transferTime)
     {
         float accumulatedTime = 0f;
-        while(accumulatedTime < transferTime)
+        Vector2 startPosition = transform.position;
+        while (accumulatedTime < transferTime)
         {
-            Vector2 newPosition = Vector2.Lerp(transform.position, targetPosition, accumulatedTime / transferTime);
+            Vector2 newPosition = Vector2.Lerp(startPosition, targetPosition, accumulatedTime / transferTime);
             SetPosition(newPosition);
             accumulatedTime += Time.deltaTime;
             yield return null;
